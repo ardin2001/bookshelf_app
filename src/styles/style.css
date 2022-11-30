@@ -1,0 +1,229 @@
+:root {
+    --font-color: #333;
+    --background-color: #eee;
+}
+   
+[data-theme='dark'] {
+    --font-color: #eee;
+    --background-color: #333;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: var(--background-color);
+    color: var(--font-color);
+}
+header nav{
+    background-color: var(--background-color);
+    padding: 20px 60px;
+    border-bottom: 3px solid var(--font-color);
+}
+header nav ul{
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+}
+header nav ul li a{
+    text-decoration: none;
+    display: inline;
+    font-size: 30px;    
+    color: var(--font-color);
+}
+header nav ul .right{
+    display: flex;
+    width: 15%;
+    justify-content: space-between;
+}
+header nav ul .right li{
+    font-size: 15px;
+}
+header nav ul .right li button{
+    color: var(--font-color);
+    background-color: var(--background-color);
+    font-size: 25px;
+    border: none;
+}
+main{
+    margin: 25px 25px 150px;
+}
+main h1,h2{
+    text-align: center;
+}
+a{
+    color: var(--font-color);
+}
+.note{
+    text-align: center;
+}
+.card-list{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+.card-list .card-item{
+    width: 20%;
+    margin: 20px;
+    padding: 20px;
+    border: 3px solid var(--font-color);
+    color: var(--font-color);
+}
+.card-list .card-item:hover{
+    box-shadow: 0px 0px 2px 4px rgba(0, 0, 0, 0.3);
+}
+.card-detail{
+    width: 40%;
+    text-align: justify;
+    margin: auto;
+    border: 3px solid var(--font-color);
+    color: var(--font-color);
+    padding: 25px;
+}
+.card-detail .id-title{
+    text-align: left;
+}
+.tanggal{
+    color: rgb(147, 147, 147);
+}
+.btn{
+    padding: 5px 15px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    margin: 5px;
+    font-size: 20px;
+}
+.btn-Arsipkan{
+    background-color: rgb(59, 59, 255);
+}
+.btn-delete{
+    background-color: rgb(255, 22, 22);
+}
+.btn-Arsipkan:hover{
+    background-color: rgb(0, 0, 255);
+}
+.btn-Arsipkan:active{
+    background-color: rgb(59, 59, 255);
+}
+.btn-delete:hover{
+    background-color: rgb(221, 0, 0);
+}
+.btn-delete:active{
+    background-color: rgb(255, 22, 22);
+}
+.btn-Pindahkan{
+    background-color: #ffbb33;
+}
+.btn-Pindahkan:hover{
+    background-color: #df9604;
+}
+.btn-Pindahkan:active{
+    background-color: #ffbb33;
+}
+.input-note{
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+}
+.search-note{
+    padding: 10px;
+    width: 50%;
+    border: 3px solid rgb(30, 30, 30);
+    border-radius: 10px;
+}
+.search-note:active{
+    box-shadow: 0px 0px 4px black;
+}
+form{
+    margin: 40px auto;
+    width: 40%;
+    padding: 30px;
+    background-color: whitesmoke;
+    border: 3px solid rgb(30, 30, 30);
+    border-radius: 8px;
+}
+form input {    
+    padding: 5px;
+    width: 100%;
+    margin: 10px 0;
+}
+form button {
+    width: 100%;
+    padding: 8px;
+    margin-top: 10px;
+    background-color: rgb(52, 52, 52);
+    color: white;
+    border: none;
+}
+form button:hover{
+    background-color: rgb(83, 83, 83);
+}
+form button:active{
+    background-color: rgb(52, 52, 52);
+}
+.note-input input{
+    display: block;
+    margin: 8px;
+}
+.not-found{
+    color: red;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+}
+footer{
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    color: var(--font-color);
+    border-top: 3px solid var(--font-color);
+    padding: 20px;
+}
+
+@media only screen and (max-width: 600px) {
+    header nav ul li a{
+        text-decoration: none;
+        font-size: 16px;
+    }
+    .card-list .card-item{
+        width: 100%;
+    }
+    footer h2{
+        font-size: 20px;
+    }
+}
+@media only screen and (min-width: 600px) {
+    header nav ul li a{
+        text-decoration: none;
+        font-size: 20px;
+    }
+    .card-list .card-item{
+        width: 80%;
+    }
+    footer h2{
+        font-size: 24px;
+    }
+}
+@media only screen and (min-width: 768px) {
+    header nav ul li a{
+        text-decoration: none;
+        font-size: 24px;
+    }
+    .card-list .card-item{
+        width: 40%;
+    }
+    footer h2{
+        font-size: 30px;
+    }
+}
+@media only screen and (min-width: 992px) {
+    .card-list .card-item{
+        width: 20%;
+    }
+}
