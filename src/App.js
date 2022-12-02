@@ -12,109 +12,81 @@ import AddPage from './pages/AddNotePage';
 import ArchivedPageWrapper from './pages/ArchivedPage';
 import Page404 from './pages/404';
 import Footer from './component/Footer'
-class ContactApp extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      authedUser: null,
-      initializing: true,
-      localeContext: {
-        locale: localStorage.getItem('locale') || 'en',
-        toggleLocale: () => {
-          this.setState((prevState) => {
-            const newLocale = prevState.localeContext.locale === 'id' ? 'en' : 'id';
-            localStorage.setItem('locale', newLocale);
-            return {
-              localeContext: {
-                ...prevState.localeContext,
-                locale: newLocale
-              }
-            }
-          });
+
+function App(){
+    const [authedUser,setauthedUser] = React.useState(null);
+    const [initializing, setinitializing] = React.useState(true);
+    const [localeContext, setlocaleContext] = React.useState({
+      locale: localStorage.getItem('locale') || 'id',
+      toggleLocale: () => {
+        setlocaleContext((prevState) => {
+        const newLocale = prevState.locale === 'id' ? 'en' : 'id';
+        localStorage.setItem('locale', newLocale);
+        return {
+          ...prevState,
+          locale: newLocale
         }
-      },
+      });
+    }
+    })
+    const [theme,setTheme] = React.useState({
       theme: localStorage.getItem('theme') || 'light',
       toggleTheme: () => {
-        this.setState((prevState) => {
-          // mendapatkan nilai tema baru berdasarkan state sebelumnya
-          const newTheme = prevState.theme === 'light' ? 'dark' : 'light';
-          // menyimpan nilai tema baru ke local storage
-          localStorage.setItem('theme', newTheme);
- 
-          // mengembalikan dengan nilai theme terbaru.
-          return {
-            theme: newTheme
-          };
-        });
-      },
-    };
- 
-    this.onLoginSuccess = this.onLoginSuccess.bind(this);
-    this.onLogout = this.onLogout.bind(this);
-  }
- 
-  async onLoginSuccess({ accessToken }) {
-    putAccessToken(accessToken);
-    const { data } = await getUserLogged();
- 
-    this.setState(() => {
-      return {
-        authedUser: data,
-      };
-    });
-  }
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.theme !== this.state.theme) {
-      document.documentElement.setAttribute('data-theme', this.state.theme);
+        setTheme((prevState) => {
+        const newTheme = prevState.theme === 'light' ? 'dark' : 'light';
+        localStorage.setItem('theme', newTheme);
+        return {
+          ...prevState,
+          theme: newTheme
+        }
+      });
     }
-  }
-  async componentDidMount() {
-    document.documentElement.setAttribute('data-theme', this.state.theme);
-    const { data } = await getUserLogged();
-    this.setState(() => {
-      return {
-        authedUser: data,
-        initializing: false
-      };
-    });
-  }
-  onLogout() {
-    this.setState(() => {
-      return {
-        authedUser: null
-      }
-    });
-    putAccessToken('');
-  }
-  render() {
-    if (this.state.initializing) {
+    })
+    React.useEffect(()=>{
+      document.documentElement.setAttribute('data-theme', theme.theme);
+      getUserLogged().then(({ data }) => {
+        setauthedUser(data);
+        setinitializing(false);
+      });
+    },[theme.theme])
+    async function onLoginSuccess({ accessToken }) {
+      putAccessToken(accessToken);
+      const { data } = await getUserLogged();
+   
+      setauthedUser(data)
+    }
+    function onLogout() {
+      setauthedUser(null);
+      putAccessToken('');
+    }
+
+    if (initializing) {
       return null;
     }
-    
-    if (this.state.authedUser === null) {
+    if (authedUser === null) {
       return (
-        <ThemeContext.Provider value={this.state}>
-          <LocaleContext.Provider value={this.state.localeContext}>
+        <ThemeContext.Provider value={theme}>
+          <LocaleContext.Provider value={localeContext}>
             <header className='contact-app__header'>
               <Header/>
             </header>
             <main>
               <Routes>
-                <Route path="/*" element={<LoginPage loginSuccess={this.onLoginSuccess} />} />
+                <Route path="/*" element={<LoginPage loginSuccess={onLoginSuccess} />} />
                 <Route path="/register" element={<RegisterPage />} />
               </Routes>
             </main>
             <Footer actor='Ardin Nugraha' message='Thank you for visit my Website'></Footer>
           </LocaleContext.Provider>
-        </ThemeContext.Provider>      
+        </ThemeContext.Provider>    
       )
     }
  
-    return (      
-      <ThemeContext.Provider value={this.state}>
-        <LocaleContext.Provider value={this.state.localeContext}>
+    return (
+      <ThemeContext.Provider value={theme}>
+        <LocaleContext.Provider value={localeContext}>
               <header>
-                <Header logout={this.onLogout} name={this.state.authedUser.name} />
+                <Header logout={onLogout} name={authedUser.name} />
               </header>
               <main>
                 <Routes>
@@ -127,9 +99,8 @@ class ContactApp extends React.Component {
               </main>
               <Footer actor='Ardin Nugraha' message='Thank you for visit my Website'></Footer>
         </LocaleContext.Provider>
-      </ThemeContext.Provider>            
+      </ThemeContext.Provider>          
     );
-  }
 }
  
-export default ContactApp;
+export default App;

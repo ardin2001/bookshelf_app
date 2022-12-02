@@ -6,7 +6,7 @@ import LocaleContext from '../context/LocaleContext';
 import ThemeContext from '../context/ThemeContext';
 import { FaMoon, FaSun } from 'react-icons/fa';
 
-function Header({logout,name}) { 
+function Header({logout,name}) {
   const { locale, toggleLocale} = React.useContext(LocaleContext);
   const { theme, toggleTheme } = React.useContext(ThemeContext);
   if(name === undefined){

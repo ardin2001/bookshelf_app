@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function Footer({actor,message}) {
-   console.log('ini footer')
     return (
       <footer>
         <h2>{actor}</h2>
