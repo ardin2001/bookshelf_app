@@ -11,7 +11,7 @@ function NoteInput({onAddNote}) {
     return (
       <form onSubmit={onSubmitHandler} className='login-input'>
         <input placeholder='Masukkan judul...' value={title} onChange={handleTitleChange} />
-        <input placeholder='Masukkan catatan...' value={body} onChange={handleNoteChange} />
+        <textarea rows={6} placeholder='Masukkan catatan...' value={body} onChange={handleNoteChange} />
         <button>Masuk</button>
       </form>
     );

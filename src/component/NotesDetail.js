@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 function NoteDetail({title,body,createdAt}){
     return(
         <>
+        {console.log('cukup')}
         <h2 className='id-title'>{title}</h2>
         <p className='tanggal'>{showFormattedDate(createdAt)}</p>
         <p>{body}</p>            

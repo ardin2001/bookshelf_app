@@ -26,17 +26,11 @@ function HomePage() {
     await deleteNote(id);
     const { data } = await getArchivedNotes();
     setNotes(data);
-    setTimeout(() => {
-      setLoading(true);
-    }, 400);
   }
   async function ononUnArchivedHandler(id) {
     await unarchiveNote(id);
     const { data } = await getArchivedNotes();
     setNotes(data);
-    setTimeout(() => {
-      setLoading(true);
-    }, 400);
   }
   function onKeywordChangeHandler(keyword) {
     setKeyword(keyword);

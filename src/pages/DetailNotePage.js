@@ -17,6 +17,7 @@ class DetailNote extends React.Component {
     };
   }
   async componentDidMount() {
+    console.log('componen di mount')
     const { data } = await getNote(this.props.id);
     
     this.setState(() => {

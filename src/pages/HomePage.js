@@ -25,17 +25,11 @@ function HomePage() {
     await deleteNote(id);
     const { data } = await getActiveNotes();
     setNotes(data);
-    setTimeout(() => {
-      setLoading(true);
-    }, 400);
   }
   async function onArchivedHandler(id) {
     await archiveNote(id);
     const { data } = await getActiveNotes();
     setNotes(data);
-    setTimeout(() => {
-      setLoading(true);
-    }, 400);
   }
   function onKeywordChangeHandler(keyword) {
     setKeyword(keyword);
