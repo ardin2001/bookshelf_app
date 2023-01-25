@@ -13,6 +13,7 @@ function AddPage() {
   }
   return (
     <>
+    {console.log('loading data addnote')}
       <h2>{locale === 'id' ? 'Tambah Catatan' : 'Add Note'}</h2>
       <NoteInput onAddNote={onAddNoteHandler} />
     </>

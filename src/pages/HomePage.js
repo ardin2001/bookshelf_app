@@ -40,6 +40,7 @@ function HomePage() {
   });
   return loading === true ? (
     <section>
+      {console.log('loading data')}
       <SearchBar keyword={keyword} keywordChange={onKeywordChangeHandler} />
       <h2>{locale === "id" ? "Daftar Catatan" : "Notes List"}</h2>
       <CardList

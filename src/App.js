@@ -48,7 +48,7 @@ function App(){
         setauthedUser(data);
         setinitializing(false);
       });
-    })
+    },[theme.theme])
     async function onLoginSuccess({ accessToken }) {
       putAccessToken(accessToken);
       const { data } = await getUserLogged();

@@ -7,6 +7,7 @@ function RegisterPage() {
   const {locale} = React.useContext(LocaleContext);
   return (
     <section className='register-page'>
+    {console.log('loading data register')}
       <h2>{locale === 'id' ? 'Silakan Mendaftar Untuk Melanjutkan' : "Please Register To Continue"}</h2>
       <RegisterNew/>
       <p className='note'>{locale === 'id' ? 'Kembali ke ' : "Back to "}<Link to="/">{locale === 'id' ? 'Masuk' : "Login"}</Link></p>
