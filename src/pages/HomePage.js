@@ -38,19 +38,21 @@ function HomePage() {
   const filteredNotes = active_notes.filter((note) => {
     return note.title.toLowerCase().includes(keyword.toLowerCase());
   });
-  return loading === true ? (
+  return (
     <section>
-      {console.log('loading data')}
+      {console.log("loading data")}
       <SearchBar keyword={keyword} keywordChange={onKeywordChangeHandler} />
       <h2>{locale === "id" ? "Daftar Catatan" : "Notes List"}</h2>
-      <CardList
-        notes={filteredNotes}
-        onArchived={onArchivedHandler}
-        onDelete={onDeleteHandler}
-      />
+      {loading === true ? (
+        <CardList
+          notes={filteredNotes}
+          onArchived={onArchivedHandler}
+          onDelete={onDeleteHandler}
+        />
+      ) : (
+        <h3 style={{textAlign : 'center'}}>Loading Data</h3>
+      )}
     </section>
-  ) : (
-    <h2>Data Loading</h2>
   );
 }
 export default HomePage;

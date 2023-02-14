@@ -47,7 +47,7 @@ function App(){
       getUserLogged().then(({ data }) => {
         setauthedUser(data);
         setinitializing(false);
-      });
+      }).catch(err => console.log(err));
     },[theme.theme])
     async function onLoginSuccess({ accessToken }) {
       putAccessToken(accessToken);

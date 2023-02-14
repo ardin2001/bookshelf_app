@@ -39,21 +39,21 @@ function HomePage() {
   const filteredNotes = archived_notes.filter((note) => {
     return note.title.toLowerCase().includes(keyword.toLowerCase());
   });
-  return loading === true ? (
+  return (
     <section>
-    {console.log('loading data archived')}
+      {console.log("loading data")}
       <SearchBar keyword={keyword} keywordChange={onKeywordChangeHandler} />
-      <h2>
-        {locale === "id" ? "Daftar Catatan Arsip" : "Archived Notes List"}
-      </h2>
-      <CardList
+      <h2>{locale === "id" ? "Daftar Catatan Arsip" : "Archived Notes List"}</h2>
+      {loading === true ? (
+        <CardList
         notes={filteredNotes}
         onUnArchived={ononUnArchivedHandler}
         onDelete={onDeleteHandler}
       />
+      ) : (
+        <h3 style={{textAlign : 'center'}}>Loading Data</h3>
+      )}
     </section>
-  ) : (
-    <h2>Data Loading!</h2>
   );
 }
 export default HomePage;
