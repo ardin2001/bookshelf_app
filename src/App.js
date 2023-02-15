@@ -52,7 +52,6 @@ function App() {
       .catch((err) => console.log(err));
   }, []);
   React.useEffect(() => {
-    console.log("run local theme storage");
     document.documentElement.setAttribute("data-theme", themeContext);
   }, [themeContext]);
   async function onLoginSuccess({ accessToken }) {

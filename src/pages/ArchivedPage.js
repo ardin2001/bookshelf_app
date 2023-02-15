@@ -24,13 +24,20 @@ function HomePage() {
   }, []);
   async function onDeleteHandler(id) {
     await deleteNote(id);
-    const { data } = await getArchivedNotes();
-    setNotes(data);
+    // const { data } = await getArchivedNotes();
+    const result = archived_notes.filter(e => e.id !== id)
+    setNotes(result);
   }
   async function ononUnArchivedHandler(id) {
     await unarchiveNote(id);
-    const { data } = await getArchivedNotes();
-    setNotes(data);
+    // const { data } = await getArchivedNotes();
+    const result = archived_notes.filter(e => {
+      if(e.id === id){
+        return null
+      }
+      return e
+    })
+    setNotes(result);
   }
   function onKeywordChangeHandler(keyword) {
     setKeyword(keyword);

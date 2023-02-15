@@ -23,13 +23,22 @@ function HomePage() {
   }, []);
   async function onDeleteHandler(id) {
     await deleteNote(id);
-    const { data } = await getActiveNotes();
-    setNotes(data);
+    // const { data } = await getActiveNotes();
+    const result = active_notes.filter( e => e.id !== id)
+    setNotes(result);
   }
   async function onArchivedHandler(id) {
     await archiveNote(id);
     const { data } = await getActiveNotes();
-    setNotes(data);
+    console.log(data)
+    const result = active_notes.filter(e => {
+      if(e.id === id){
+        return null
+      }
+      return e
+    })
+    console.log(result)
+    setNotes(result);
   }
   function onKeywordChangeHandler(keyword) {
     setKeyword(keyword);
@@ -40,7 +49,6 @@ function HomePage() {
   });
   return (
     <section>
-      {console.log("loading data")}
       <SearchBar keyword={keyword} keywordChange={onKeywordChangeHandler} />
       <h2>{localeContext === "id" ? "Daftar Catatan" : "Notes List"}</h2>
       {loading === true ? (
