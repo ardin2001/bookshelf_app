@@ -13,7 +13,7 @@ function HomePage() {
   const [keyword, setKeyword] = React.useState(() => {
     return searchParams.get("keyword") || "";
   });
-  const { locale } = React.useContext(LocaleContext);
+  const { localeContext } = React.useContext(LocaleContext);
   React.useEffect(() => {
     getArchivedNotes().then(({ data }) => {
       setNotes(data);
@@ -43,7 +43,7 @@ function HomePage() {
     <section>
       {console.log("loading data")}
       <SearchBar keyword={keyword} keywordChange={onKeywordChangeHandler} />
-      <h2>{locale === "id" ? "Daftar Catatan Arsip" : "Archived Notes List"}</h2>
+      <h2>{localeContext === "id" ? "Daftar Catatan Arsip" : "Archived Notes List"}</h2>
       {loading === true ? (
         <CardList
         notes={filteredNotes}
